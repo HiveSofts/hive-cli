@@ -30,7 +30,7 @@ try {
 Write-Host "  ✅ Version: $Version" -ForegroundColor $Green
 Write-Host ""
 
-$Asset = "hive-windows.exe"
+$Asset = "hive.exe"
 $DownloadUrl = "https://github.com/$Repo/releases/download/$Version/$Asset"
 
 Write-Host "  ⬇️ Downloading Hive..." -ForegroundColor $Yellow
