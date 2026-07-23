@@ -1,0 +1,12 @@
+/target
+.hive
+.idea/
+
+*.rs.bk
+
+.DS_Store
+
+.env
+.env.*
+
+*.log
