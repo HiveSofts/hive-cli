@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hive CLI</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: Inter, system-ui, sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: #f0b429;
+        }
+
+        .subtitle {
+            color: #8b949e;
+            font-size: 20px;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        pre {
+            background: #010409;
+            border-radius: 8px;
+            padding: 18px;
+            overflow-x: auto;
+            color: #58a6ff;
+        }
+
+        code {
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #238636;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #8b949e;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        🐝 <span>Hive</span> CLI
+    </h1>
+
+    <p class="subtitle">
+        Your local development environment, orchestrated.
+    </p>
+
+    <span class="badge">
+CLI Tool
+</span>
+
+
+    <div class="card">
+
+        <h2>Linux</h2>
+
+        <pre><code>
+curl -fsSL https://raw.githubusercontent.com/HiveSofts/hive-cli/main/install/install.sh | bash
+</code></pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>macOS</h2>
+
+        <pre><code>
+curl -fsSL https://raw.githubusercontent.com/HiveSofts/hive-cli/main/install/install.sh | bash
+</code></pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Windows PowerShell</h2>
+
+        <pre><code>
+irm https://raw.githubusercontent.com/HiveSofts/hive-cli/main/install/install.ps1 | iex
+</code></pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Verify Installation</h2>
+
+        <pre><code>
+hive --version
+
+hive --help
+</code></pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Quick Start</h2>
+
+        <pre><code>
+hive init
+
+hive run
+
+hive expose
+</code></pre>
+
+    </div>
+
+
+    <footer>
+        © HiveSofts · Hive CLI
+        <br>
+        <a href="https://github.com/HiveSofts/hive-cli">
+            GitHub Repository
+        </a>
+    </footer>
+
+
+</div>
+
+</body>
+</html>
