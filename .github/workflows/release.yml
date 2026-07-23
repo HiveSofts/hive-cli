@@ -11,28 +11,22 @@ permissions:
 
 
 jobs:
-  build-release:
 
-    name: Build Release (${{ matrix.name }})
+  build:
 
     strategy:
-      fail-fast: false
-
       matrix:
         include:
 
-          - name: Linux
+          - name: linux
             os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             binary: hive
-            output: hive-linux
 
-
-          - name: Windows
+          - name: windows
             os: windows-latest
             target: x86_64-pc-windows-gnu
             binary: hive.exe
-            output: hive-windows.exe
 
 
     runs-on: ${{ matrix.os }}
@@ -40,7 +34,7 @@ jobs:
 
     steps:
 
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
 
@@ -50,42 +44,21 @@ jobs:
           targets: ${{ matrix.target }}
 
 
-      - name: Cache Cargo
-        uses: Swatinem/rust-cache@v2
-
-
-      - name: Build release binary
+      - name: Build
         run: cargo build --release --target ${{ matrix.target }}
 
 
-      - name: Prepare Linux binary
-        if: matrix.name == 'Linux'
-        shell: bash
-        run: |
-          mkdir dist
-          cp target/${{ matrix.target }}/release/${{ matrix.binary }} dist/${{ matrix.output }}
-
-
-      - name: Prepare Windows binary
-        if: matrix.name == 'Windows'
-        shell: bash
-        run: |
-          mkdir dist
-          cp target/${{ matrix.target }}/release/${{ matrix.binary }} dist/${{ matrix.output }}
-
-
-      - name: Upload release artifact
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: hive-${{ matrix.name }}
-          path: dist/
+          path: target/${{ matrix.target }}/release/${{ matrix.binary }}
 
 
-  create-release:
 
-    name: Create GitHub Release
+  release:
 
-    needs: build-release
+    needs: build
 
     runs-on: ubuntu-latest
 
@@ -95,14 +68,14 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          path: release-files
+          path: artifacts
 
 
-      - name: Create Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          name: Hive CLI ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
           generate_release_notes: true
           files: |
-            release-files/**/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            artifacts/**/*
